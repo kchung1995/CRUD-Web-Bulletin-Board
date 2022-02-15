@@ -4,7 +4,7 @@ buildscript {
     }
     repositories {
         mavenCentral()
-        jcenter()
+        //jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -18,7 +18,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 
-group 'com.katfun.crudboard'
+group 'com.tistory.katfun'
 version '1.0-SNAPSHOT'
 
 repositories {
