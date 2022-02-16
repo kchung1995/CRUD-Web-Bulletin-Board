@@ -1,0 +1,2 @@
+com/tistory/katfun/crud/domain/posts/PostsRepositoryTest.java
+ com.tistory.katfun.crud.domain.posts.PostsRepositoryTest
