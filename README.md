@@ -4,7 +4,7 @@
 
 ### 개발 환경
 
-- Spring Boot 2.1.9
+- Spring Boot 2.4.13
 - Gradle 6.7.1 - 추후 버전 7로 올릴 계획 검토
 - IntelliJ IDEA
 - Java 15 (15.0.1)
