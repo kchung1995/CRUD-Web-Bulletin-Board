@@ -4,10 +4,11 @@
 
 ### 개발 환경
 
-- Spring Boot 2.4.13
-- Gradle 6.7.1 - 추후 버전 7로 올릴 계획 검토
+- Spring Boot 2.6.3
+- Gradle 7.0
 - IntelliJ IDEA
 - Java 15 (15.0.1)
+- JUnit 5
 - GitHub (https://github.com/kchung1995/CRUD-Web-Bulletin-Board)
 
 개발 기획서는 [여기](https://accurate-frigate-143.notion.site/CRUD-40f53ae8dd59467aa21d12c039e64634)서 확인하실 수 있습니다.  
