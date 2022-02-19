@@ -11,7 +11,7 @@
 - JUnit 5
 - GitHub (https://github.com/kchung1995/CRUD-Web-Bulletin-Board)
 
-개발 기획서는 [여기](https://accurate-frigate-143.notion.site/CRUD-40f53ae8dd59467aa21d12c039e64634) 서 확인하실 수 있습니다.  
+개발 기획서는 [여기](https://kchung1995.notion.site/CRUD-40f53ae8dd59467aa21d12c039e64634) 서 확인하실 수 있습니다.  
   
 개발 과정은 [블로그](katfun.tistory.com)에 작성하여 공유하고 있습니다.
   
