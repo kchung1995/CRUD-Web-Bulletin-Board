@@ -3,6 +3,7 @@ package com.tistory.katfun.crud.web;
 import com.tistory.katfun.crud.domain.posts.Posts;
 import com.tistory.katfun.crud.domain.posts.PostsRepository;
 import com.tistory.katfun.crud.web.dto.PostsSaveRequestDto;
+import com.tistory.katfun.crud.web.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
