@@ -32,10 +32,11 @@ public class PostsApiControllerTest {
     private PostsRepository postsRepository;
     @Autowired
     private TestRestTemplate restTemplate;
-
+    @Autowired
+    private PostsApiController postsApiController;
 
     @Test
-    public void Posts_Registered() throws Exception {
+    public void Posts_registered() throws Exception {
         //given
         String title = "title";
         String content = "content";
@@ -59,10 +60,11 @@ public class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertEquals(title, all.get(0).getTitle());
         assertEquals(content, all.get(0).getContent());
+        postsApiController.delete(all.get(0).getId());
     }
 
     @Test
-    public void Posts_edited() throws Exception {
+    public void Posts_updated() throws Exception {
         //given
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title("title")
@@ -90,7 +92,8 @@ public class PostsApiControllerTest {
         Assertions.assertTrue(responseEntity.getBody() > 0L);
 
         List<Posts> all = postsRepository.findAll();
-        assertEquals(all.get(0).getTitle(), expectedTitle);
-        assertEquals(all.get(0).getContent(), expectedContent);
+        assertEquals(expectedTitle, all.get(0).getTitle());
+        assertEquals(expectedContent, all.get(0).getContent());
+        postsApiController.delete(all.get(0).getId());
     }
 }
