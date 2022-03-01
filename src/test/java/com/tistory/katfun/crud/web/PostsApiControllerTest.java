@@ -4,6 +4,7 @@ import com.tistory.katfun.crud.domain.posts.Posts;
 import com.tistory.katfun.crud.domain.posts.PostsRepository;
 import com.tistory.katfun.crud.web.dto.PostsSaveRequestDto;
 import com.tistory.katfun.crud.web.dto.PostsUpdateRequestDto;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,8 +36,13 @@ public class PostsApiControllerTest {
     @Autowired
     private PostsApiController postsApiController;
 
+    @AfterEach
+    public void afterEach() {
+        postsRepository.deleteAll();
+    }
+
     @Test
-    public void Posts_registered() throws Exception {
+    public void posts_registered() throws Exception {
         //given
         String title = "title";
         String content = "content";
@@ -60,7 +66,6 @@ public class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertEquals(title, all.get(0).getTitle());
         assertEquals(content, all.get(0).getContent());
-        postsApiController.delete(all.get(0).getId());
     }
 
     @Test
@@ -94,6 +99,6 @@ public class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertEquals(expectedTitle, all.get(0).getTitle());
         assertEquals(expectedContent, all.get(0).getContent());
-        postsApiController.delete(all.get(0).getId());
     }
+
 }
