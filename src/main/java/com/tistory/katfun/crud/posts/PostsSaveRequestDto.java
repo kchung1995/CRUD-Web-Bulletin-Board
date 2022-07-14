@@ -2,9 +2,13 @@ package com.tistory.katfun.crud.posts;
 
 import com.tistory.katfun.crud.domain.Posts;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+@Getter
+@NoArgsConstructor
 public class PostsSaveRequestDto {
 
     private String category;
@@ -16,14 +20,14 @@ public class PostsSaveRequestDto {
     private int viewCount;
 
     @Builder
-    public PostsSaveRequestDto(String category, String title, String createId, String content) {
+    public PostsSaveRequestDto(String category, String title, String createId, Date createTime, Date lastEditTime, String content, int viewCount) {
         this.category = category;
         this.title = title;
         this.createId = createId;
-        this.createTime = new Date(System.currentTimeMillis());
-        this.lastEditTime = new Date(System.currentTimeMillis());
+        this.createTime = createTime;
+        this.lastEditTime = lastEditTime;
         this.content = content;
-        this.viewCount = 0;
+        this.viewCount = viewCount;
     }
 
     public Posts toEntity() {
@@ -31,7 +35,11 @@ public class PostsSaveRequestDto {
                 .category(category)
                 .title(title)
                 .createId(createId)
+                .createTime(createTime)
+                .lastEditTime(lastEditTime)
                 .content(content)
+                .viewCount(viewCount)
                 .build();
     }
+
 }
