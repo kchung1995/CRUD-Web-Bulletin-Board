@@ -25,7 +25,29 @@ public class PostsServiceImpl implements PostsService {
     @Override
     @Transactional
     public Long savePost(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity()).getId();
+        return postsRepository.save(requestDto.toEntity()).getPostId();
     }
 
+    @Override
+    @Transactional
+    public Long update(Long postId, PostsUpdateRequestDto requestDto) {
+        Posts posts = postsRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "해당 게시물이 존재하지 않습니다. postId = " + postId
+                ));
+
+        posts.update(requestDto.getTitle(), requestDto.getContent());
+
+        return postId;
+    }
+
+    @Override
+    public PostsResponseDto findById (Long postId) {
+        Posts entity = postsRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "해당 게시물이 존재하지 않습니다. postId = " + postId
+                ));
+
+        return new PostsResponseDto(entity);
+    }
 }

@@ -48,4 +48,10 @@ public class Posts {
         this.content = content;
         this.viewCount = viewCount;
     }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.lastEditTime = new Date(System.currentTimeMillis());
+        this.content = content;
+    }
 }
