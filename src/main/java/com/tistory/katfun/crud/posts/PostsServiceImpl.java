@@ -22,14 +22,14 @@ public class PostsServiceImpl implements PostsService {
         return postsRepository.findAll();
     }
 
-    @Override
     @Transactional
+    @Override
     public Long savePost(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getPostId();
     }
 
-    @Override
     @Transactional
+    @Override
     public Long update(Long postId, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException(

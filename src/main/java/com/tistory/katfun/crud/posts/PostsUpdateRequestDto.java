@@ -20,6 +20,6 @@ public class PostsUpdateRequestDto {
         this.title = title;
         this.content = content;
         this.lastEditDate = new Date(System.currentTimeMillis());
-        this.viewCount = viewCount + 1;
+        this.viewCount = viewCount;
     }
 }

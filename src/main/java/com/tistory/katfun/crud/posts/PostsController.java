@@ -34,12 +34,13 @@ public class PostsController {
     }
 
     // 게시물 수정
-    @PutMapping("/posts/{postId}")
+    @PatchMapping("/posts/{postId}")
     public Long editPost(@PathVariable Long postId, @RequestBody PostsUpdateRequestDto requestDto) {
         // 1. 본인이 해당 게시물의 생성자이거나, 2. 관리자라면
         // 수정할 수 있다.
         // 해당 권한 체크 로직 구현 필요
 
+        System.out.println(postId);
         return postsService.update(postId, requestDto);
     }
 
@@ -52,7 +53,8 @@ public class PostsController {
 
 
     // 게시물 삭제
-    public void deletePost() {
+    @DeleteMapping("/posts/{postId}")
+    public void deletePost(@PathVariable String postId) {
         // 1. 본인이 해당 게시물의 생성자이거나, 2. 관리자라면
         // 수정할 수 있다.
         //
