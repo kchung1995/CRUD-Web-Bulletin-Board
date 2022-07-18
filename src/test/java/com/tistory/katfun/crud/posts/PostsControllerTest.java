@@ -74,4 +74,48 @@ public class PostsControllerTest {
         assertThat(createdPosts.get(0).getViewCount()).isEqualTo(viewCount);
     }
 
+    @Transactional
+    @Test
+    @DisplayName("게시물이_수정된다")
+    public void postEdit() throws Exception {
+
+        // given
+        LocalDate now = LocalDate.now();
+
+        String category = "질문";
+        String title = "안녕하세요 JPA에 대해 질문이 있습니다";
+        String createId = "KAKAO00001";
+        Date createTime = new Date(System.currentTimeMillis());
+        Date lastEditTime = new Date(System.currentTimeMillis());
+        String content = "안녕하세요, 질문이 있어서 게시물을 작성합니다. \nJPQL은 이렇게 쓰는게 맞나요?";
+        int viewCount = 0;
+
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .category(category)
+                .title(title)
+                .createId(createId)
+                .createTime(createTime)
+                .lastEditTime(lastEditTime)
+                .content(content)
+                .viewCount(viewCount)
+                .build();
+
+        String url = "http://localhost:" + port + "/posts/addPost";
+
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+
+        String content2 = "괜찮습니다, 질문은 해결했습니다. 감사합니다.";
+
+        PostsUpdateRequestDto requestDto2 = PostsUpdateRequestDto.builder()
+                .content(content2)
+                .build();
+
+        String url2 = "http://localhost:" + port + "/posts/editPost/";
+
+        // when
+
+        ResponseEntity<Long> responseEntity2 = restTemplate.postForEntity()
+
+        // then
+    }
 }
