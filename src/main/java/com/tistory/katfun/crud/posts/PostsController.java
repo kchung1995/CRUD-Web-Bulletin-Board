@@ -39,8 +39,6 @@ public class PostsController {
         // 1. 본인이 해당 게시물의 생성자이거나, 2. 관리자라면
         // 수정할 수 있다.
         // 해당 권한 체크 로직 구현 필요
-
-        System.out.println(postId);
         return postsService.update(postId, requestDto);
     }
 
@@ -50,13 +48,12 @@ public class PostsController {
         return postsService.findById(postId);
     }
 
-
-
     // 게시물 삭제
     @DeleteMapping("/posts/{postId}")
-    public void deletePost(@PathVariable String postId) {
+    public void deletePost(@PathVariable Long postId) {
         // 1. 본인이 해당 게시물의 생성자이거나, 2. 관리자라면
         // 수정할 수 있다.
-        //
+        // 해당 권한 체크 로직 구현 필요
+        postsService.delete(postId);
     }
 }

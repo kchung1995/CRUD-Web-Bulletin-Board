@@ -13,5 +13,7 @@ public interface PostsService {
 
     public Long update(Long postId, PostsUpdateRequestDto requestDto);
 
+    public Long delete(Long postId);
+
     public PostsResponseDto findById (Long Id);
 }

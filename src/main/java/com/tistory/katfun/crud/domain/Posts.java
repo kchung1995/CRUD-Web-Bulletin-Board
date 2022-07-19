@@ -54,4 +54,8 @@ public class Posts {
         this.lastEditTime = new Date(System.currentTimeMillis());
         this.content = content;
     }
+
+    public void delete() {
+
+    }
 }

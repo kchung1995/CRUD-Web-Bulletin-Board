@@ -1,6 +1,7 @@
 package com.tistory.katfun.crud.posts;
 
 import com.tistory.katfun.crud.domain.Posts;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,12 @@ public class PostsControllerTest {
         restTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
     }
 
-    @Transactional
+    @AfterEach
+    public void rollback() {
+        postsRepository.deleteAll();
+    }
+
+//    @Transactional
     @Test
     @DisplayName("게시물이_등록된다")
     public void postsCreate() throws Exception {
@@ -135,5 +141,45 @@ public class PostsControllerTest {
         List<Posts> editedPosts = postsRepository.findAll();
         assertThat(editedPosts.get(0).getTitle()).isEqualTo(title2);
         assertThat(editedPosts.get(0).getContent()).isEqualTo(content2);
+    }
+
+    //    @Transactional
+    @Test
+    @DisplayName("게시물이_삭제된다")
+    public void postDelete() throws Exception {
+
+        // given
+        LocalDate now = LocalDate.now();
+
+        String category = "질문";
+        String title = "안녕하세요 JPA에 대해 질문이 있습니다";
+        String createId = "KAKAO00001";
+        Date createTime = new Date(System.currentTimeMillis());
+        Date lastEditTime = new Date(System.currentTimeMillis());
+        String content = "안녕하세요, 질문이 있어서 게시물을 작성합니다. \nJPQL은 이렇게 쓰는게 맞나요?";
+        int viewCount = 0;
+
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                .category(category)
+                .title(title)
+                .createId(createId)
+                .createTime(createTime)
+                .lastEditTime(lastEditTime)
+                .content(content)
+                .viewCount(viewCount)
+                .build()
+        );
+
+        Long postId = savedPosts.getPostId();
+        String url = "http://localhost:" + port + "/posts/" + postId;
+
+        // when
+        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.DELETE, HttpEntity.EMPTY, Long.class);
+
+        // then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        List<Posts> editedPosts = postsRepository.findAll();
+        assertThat(editedPosts).isEmpty();
     }
 }
