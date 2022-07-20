@@ -55,7 +55,4 @@ public class Posts {
         this.content = content;
     }
 
-    public void delete() {
-
-    }
 }

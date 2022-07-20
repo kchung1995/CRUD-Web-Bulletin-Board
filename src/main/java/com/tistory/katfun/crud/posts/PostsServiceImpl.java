@@ -28,9 +28,19 @@ public class PostsServiceImpl implements PostsService {
         return postsRepository.save(requestDto.toEntity()).getPostId();
     }
 
+    @Override
+    public PostsResponseDto viewPost (Long postId) {
+        Posts entity = postsRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "해당 게시물이 존재하지 않습니다. postId = " + postId
+                ));
+
+        return new PostsResponseDto(entity);
+    }
+
     @Transactional
     @Override
-    public Long update(Long postId, PostsUpdateRequestDto requestDto) {
+    public Long updatePost(Long postId, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "해당 게시물이 존재하지 않습니다. postId = " + postId
@@ -43,7 +53,7 @@ public class PostsServiceImpl implements PostsService {
 
     @Transactional
     @Override
-    public Long delete(Long postId) {
+    public Long deletePost(Long postId) {
         Posts posts = postsRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "해당 게시물이 존재하지 않습니다. postId = " + postId
@@ -51,15 +61,5 @@ public class PostsServiceImpl implements PostsService {
 
         postsRepository.delete(posts);
         return postId;
-    }
-
-    @Override
-    public PostsResponseDto findById (Long postId) {
-        Posts entity = postsRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException(
-                        "해당 게시물이 존재하지 않습니다. postId = " + postId
-                ));
-
-        return new PostsResponseDto(entity);
     }
 }

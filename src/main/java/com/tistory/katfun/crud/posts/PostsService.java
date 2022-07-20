@@ -9,11 +9,11 @@ public interface PostsService {
 
     public List<Posts> selectPostsList();
 
+    public PostsResponseDto viewPost (Long postId);
+
     public Long savePost(PostsSaveRequestDto requestDto);
 
-    public Long update(Long postId, PostsUpdateRequestDto requestDto);
+    public Long updatePost(Long postId, PostsUpdateRequestDto requestDto);
 
-    public Long delete(Long postId);
-
-    public PostsResponseDto findById (Long Id);
+    public Long deletePost(Long postId);
 }

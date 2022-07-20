@@ -21,8 +21,9 @@ public class PostsController {
 
     // 게시물 내용 조회
     @GetMapping("/posts/{postId}")
-    public void viewPost(@PathVariable String postId) {
-        // 게시물의 고유 ID를 키 값으로, 열람 권한이 있다면 열람하도록 한다.
+    public PostsResponseDto view (@PathVariable Long postId) {
+        // 조회할 권한이 있다면 게시글 내용을 조회한다.
+        return postsService.viewPost(postId);
     }
 
     // 게시물 추가
@@ -39,13 +40,7 @@ public class PostsController {
         // 1. 본인이 해당 게시물의 생성자이거나, 2. 관리자라면
         // 수정할 수 있다.
         // 해당 권한 체크 로직 구현 필요
-        return postsService.update(postId, requestDto);
-    }
-
-    // ID값으로 게시물 찾기
-    @GetMapping("/posts/findPost/{postId}")
-    public PostsResponseDto findPostById (@PathVariable Long postId) {
-        return postsService.findById(postId);
+        return postsService.updatePost(postId, requestDto);
     }
 
     // 게시물 삭제
@@ -54,6 +49,6 @@ public class PostsController {
         // 1. 본인이 해당 게시물의 생성자이거나, 2. 관리자라면
         // 수정할 수 있다.
         // 해당 권한 체크 로직 구현 필요
-        postsService.delete(postId);
+        postsService.deletePost(postId);
     }
 }
