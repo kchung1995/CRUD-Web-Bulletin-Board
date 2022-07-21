@@ -1,7 +1,9 @@
 package com.tistory.katfun.crud.posts;
 
 import com.tistory.katfun.crud.domain.Posts;
-import org.springframework.stereotype.Service;
+import com.tistory.katfun.crud.posts.dto.PostsResponseDto;
+import com.tistory.katfun.crud.posts.dto.PostsSaveRequestDto;
+import com.tistory.katfun.crud.posts.dto.PostsUpdateRequestDto;
 
 import java.util.List;
 

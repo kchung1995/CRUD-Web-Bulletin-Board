@@ -1,4 +1,4 @@
-package com.tistory.katfun.crud.posts;
+package com.tistory.katfun.crud.posts.dto;
 
 import lombok.Builder;
 import lombok.Getter;

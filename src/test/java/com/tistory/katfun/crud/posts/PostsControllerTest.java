@@ -1,6 +1,8 @@
 package com.tistory.katfun.crud.posts;
 
 import com.tistory.katfun.crud.domain.Posts;
+import com.tistory.katfun.crud.posts.dto.PostsSaveRequestDto;
+import com.tistory.katfun.crud.posts.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;

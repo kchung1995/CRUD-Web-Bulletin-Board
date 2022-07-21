@@ -1,5 +1,8 @@
 package com.tistory.katfun.crud.posts;
 
+import com.tistory.katfun.crud.posts.dto.PostsResponseDto;
+import com.tistory.katfun.crud.posts.dto.PostsSaveRequestDto;
+import com.tistory.katfun.crud.posts.dto.PostsUpdateRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
