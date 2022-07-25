@@ -25,12 +25,6 @@ public class PostsServiceImpl implements PostsService {
         return postsRepository.findAll();
     }
 
-    @Transactional
-    @Override
-    public Long savePost(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity()).getPostId();
-    }
-
     @Override
     public PostsResponseDto viewPost (Long postId) {
         Posts entity = postsRepository.findById(postId)
@@ -39,6 +33,12 @@ public class PostsServiceImpl implements PostsService {
                 ));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional
+    @Override
+    public Long savePost(PostsSaveRequestDto requestDto) {
+        return postsRepository.save(requestDto.toEntity()).getPostId();
     }
 
     @Transactional

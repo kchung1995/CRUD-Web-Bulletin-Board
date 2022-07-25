@@ -30,10 +30,10 @@ public class Comments {
 
     @Type(type="yes_no")
     @Column(length = 1)
-    private char secretYn;
+    private Boolean secretYn;
 
     @Type(type="yes_no")
     @Column(length = 1)
-    private char editedYn;
+    private Boolean editedYn;
 
 }
