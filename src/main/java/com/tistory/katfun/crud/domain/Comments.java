@@ -1,5 +1,6 @@
 package com.tistory.katfun.crud.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
@@ -17,7 +18,7 @@ public class Comments {
     private Long commentId;
 
     @Column(nullable = false)
-    private String postId;
+    private Long postId;
 
     @Column(length = 100, nullable = false)
     private String createId;
@@ -36,4 +37,19 @@ public class Comments {
     @Column(length = 1)
     private Boolean editedYn;
 
+    @Builder
+    public Comments(Long postId, String createId, String content, Date lastEditTime, Boolean secretYn, Boolean editedYn) {
+        this.postId = postId;
+        this.createId = createId;
+        this.content = content;
+        this.lastEditTime = lastEditTime;
+        this.secretYn = secretYn;
+        this.editedYn = editedYn;
+    }
+
+    public void update(String content) {
+        this.content = content;
+        this.lastEditTime = new Date(System.currentTimeMillis());
+        this.editedYn = true;
+    }
 }
