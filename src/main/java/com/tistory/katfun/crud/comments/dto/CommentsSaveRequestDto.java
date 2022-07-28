@@ -38,6 +38,5 @@ public class CommentsSaveRequestDto {
                 .secretYn(secretYn)
                 .editedYn(editedYn)
                 .build();
-        }
     }
 }

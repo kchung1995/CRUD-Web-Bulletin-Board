@@ -1,5 +1,8 @@
 package com.tistory.katfun.crud.comments;
 
+import com.tistory.katfun.crud.comments.dto.CommentsResponseDto;
+import com.tistory.katfun.crud.comments.dto.CommentsSaveRequestDto;
+import com.tistory.katfun.crud.comments.dto.CommentsUpdateRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +25,7 @@ public class CommentsController {
     // 댓글 내용 조회
     @GetMapping("/posts/{postId}/comments/{commentId}")
     public CommentsResponseDto view(@PathVariable Long postId, @PathVariable Long commentId) {
-
+        return commentsService.viewComment(commentId);
     }
 
     // 댓글 추가
@@ -31,7 +34,7 @@ public class CommentsController {
             @RequestBody CommentsSaveRequestDto requestDto,
             @PathVariable Long postId,
             @PathVariable Long commentId) {
-        return commentsService.saveComment(requestDto, postId);
+        return commentsService.saveComment(requestDto);
     }
 
     // 댓글 수정
@@ -40,7 +43,7 @@ public class CommentsController {
             @RequestBody CommentsUpdateRequestDto requestDto,
             @PathVariable Long postId,
             @PathVariable Long commentId) {
-        return commentsService.updateComment(requestDto, postId, commentId);
+        return commentsService.updateComment(requestDto, commentId);
     }
 
     // 댓글 삭제
@@ -48,6 +51,6 @@ public class CommentsController {
     public void deleteComment(
             @PathVariable Long postId,
             @PathVariable Long commentId) {
-        commentsService.deleteComment(postId, commentId);
+        commentsService.deleteComment(commentId);
     }
 }
